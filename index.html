@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCD Smart Service - รพ.สต.บ้านสหกรณ์</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { 
+            font-family: 'Prompt', sans-serif; 
+            background-color: #f0fdfa; /* Teal-50 */
+        }
+        
+        .dashboard-card {
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-radius: 1.25rem;
+            padding: 1.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 8px solid transparent;
+            height: 100%;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <header class="gradient-bg text-white pt-16 pb-24 px-4 rounded-b-[3rem] shadow-2xl mb-12">
+        <div class="max-w-4xl mx-auto text-center animate-fade-in">
+            <div class="inline-block bg-white/20 p-4 rounded-3xl backdrop-blur-md mb-6 shadow-inner">
+                <i class="fas fa-heartbeat text-5xl text-white"></i>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">NCD Smart Service</h1>
+            <p class="text-teal-50 text-lg md:text-xl opacity-90 font-light">
+                ระบบดูแลสุขภาพผู้ป่วยโรคไม่ติดต่อเรื้อรัง <br class="md:hidden"> รพ.สต.บ้านสหกรณ์
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 -mt-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <a href="https://script.google.com/macros/s/AKfycbwCoHNdhY802o2nR5YGAfp1cv7L13nh-LKiilli7s-DfenWp0zq74vXWqPGranu4I_-ig/exec" 
+               target="_blank" class="block animate-fade-in" style="animation-delay: 0.1s;">
+                <div class="dashboard-card border-l-orange-500">
+                    <div class="pr-4">
+                        <h3 class="text-2xl font-bold text-slate-800">นับคาร์บประจำวัน</h3>
+                        <p class="text-slate-500 mt-2">บันทึกและคำนวณปริมาณคาร์โบไฮเดรตจากมื้ออาหาร</p>
+                        <div class="mt-4 flex items-center text-orange-600 font-semibold text-sm">
+                            เข้าใช้งานระบบ <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                    <div class="icon-box bg-orange-50 text-orange-500 shadow-sm shadow-orange-100">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://script.google.com/macros/s/AKfycbzG62vCl1v3Bt--P4t_EqER4woeKPmY3PrmtuMYbdbGuWOEQGxQxTUPrv4nB1Js2sqV/exec" 
+               target="_blank" class="block animate-fade-in" style="animation-delay: 0.2s;">
+                <div class="dashboard-card border-l-teal-600">
+                    <div class="pr-4">
+                        <h3 class="text-2xl font-bold text-slate-800">สมุดสุขภาพ NCDs</h3>
+                        <p class="text-slate-500 mt-2">ตรวจสอบค่า BMI รอบเอว และกราฟแนวโน้มสุขภาพ</p>
+                        <div class="mt-4 flex items-center text-teal-600 font-semibold text-sm">
+                            เข้าใช้งานระบบ <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                    <div class="icon-box bg-teal-50 text-teal-600 shadow-sm shadow-teal-100">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="mt-16 bg-white rounded-[2rem] p-8 shadow-xl border border-teal-100 animate-fade-in" style="animation-delay: 0.3s;">
+            <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+                <div class="bg-teal-600 text-white p-5 rounded-2xl text-3xl">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-slate-800">คำแนะนำการใช้งาน</h4>
+                    <p class="text-slate-500 mt-1">ท่านสามารถเลือกเข้าใช้งานระบบเพื่อบันทึกข้อมูลสุขภาพรายวัน หรือตรวจสอบประวัติการตรวจสุขภาพย้อนหลังได้ทันที ข้อมูลจะถูกบันทึกเข้าระบบของโรงพยาบาลโดยตรง</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-12 text-center text-slate-400 text-sm">
+        <div class="w-24 h-1 bg-teal-200 mx-auto mb-6 rounded-full"></div>
+        <p class="font-semibold text-slate-500">&copy; 2026 รพ.สต.บ้านสหกรณ์</p>
+        <p class="mt-1 opacity-75">NCD Smart Tracker Service System</p>
+    </footer>
+
+</body>
+</html>
