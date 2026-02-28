@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบติดตามสุขภาพและโภชนาการ - รพ.สต.บ้านสหกรณ์</title>
+    <title>NCD Smart Service - รพ.สต.บ้านสหกรณ์</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,312 +12,287 @@
     <style>
         body { 
             font-family: 'Prompt', sans-serif; 
-            background-color: #f0f4f8;
+            background-color: #f8fafc;
         }
         
-        .dashboard-card {
-            transition: all 0.3s ease;
+        .hero-section {
+            background: linear-gradient(135deg, #059669 0%, #065f46 100%);
+            border-bottom-left-radius: 4rem;
+            border-bottom-right-radius: 4rem;
+            padding: 5rem 1rem 12rem 1rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: -8rem auto 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* การ์ดเน้นขอบเส้นชัดเจน */
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: white;
-            border-radius: 1.25rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            border-bottom: 4px solid transparent;
-            height: 100%;
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            border: 2px solid #cbd5e1; /* ขอบเส้นที่เน้นให้ชัดเจน */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
         }
 
-        .dashboard-card:hover {
+        .service-card:hover {
             transform: translateY(-8px);
+            border-color: #10b981;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        .icon-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 1rem;
+        .accent-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
-            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
+        /* ส่วนสีของเจ้าหน้าที่ - เปลี่ยนเป็นโทนน้ำเงิน-ม่วง ตามที่คุณต้องการ */
         .backend-card {
-            background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+            background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
             color: white;
+            border-radius: 1.5rem;
+            padding: 1.75rem;
             cursor: pointer;
+            border: 2px solid #4338ca;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
         }
-
+        
         .backend-card:hover {
-            box-shadow: 0 10px 20px -5px rgba(67, 56, 202, 0.4);
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
         }
 
-        .glass-header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        .login-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+        }
+
+        .instruction-box {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 2px dashed #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
     </style>
 </head>
-<body class="min-h-screen pb-12">
+<body>
 
-    <header class="glass-header sticky top-0 z-40 mb-10 py-6 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col items-center">
-            <div class="bg-indigo-600 p-3 rounded-2xl shadow-lg mb-4 text-white">
-                <i class="fas fa-heartbeat text-3xl"></i>
+    <header class="hero-section">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="inline-flex items-center justify-center p-3 mb-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                <i class="fas fa-heartbeat text-3xl text-emerald-300"></i>
             </div>
-            <h1 class="text-2xl md:text-3xl font-bold text-slate-800 text-center">
-                NCDs Smart Service
-            </h1>
-            <p class="text-indigo-600 font-medium mt-1">ระบบดูแลสุขภาพ โรคไม่ติดต่อ</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">NCD Smart Service</h1>
+            <p class="text-emerald-50 text-lg md:text-xl font-light opacity-90">
+                ระบบจัดการสุขภาพอัจฉริยะ <span class="font-semibold">รพ.สต.บ้านสหกรณ์</span>
+            </p>
         </div>
     </header>
 
-    <div class="max-w-6xl mx-auto px-4">
-        
-        <div class="mb-10">
-            <h2 class="text-lg font-semibold text-slate-600 mb-6 flex items-center">
-                <span class="w-8 h-1 bg-indigo-500 rounded-full mr-3"></span>
-                บริการสำหรับประชาชน
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <a href="https://script.google.com/macros/s/AKfycbwCoHNdhY802o2nR5YGAfp1cv7L13nh-LKiilli7s-DfenWp0zq74vXWqPGranu4I_-ig/exec" target="_blank" class="block group">
-                    <div class="dashboard-card border-b-emerald-500">
-                        <div>
-                            <div class="icon-circle bg-emerald-50 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                                <i class="fas fa-utensils"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800">บันทึกรับประทานอาหาร</h3>
-                            <p class="text-slate-500 text-sm mt-2 leading-relaxed">โภชนาการรายวันและคำนวณการนับคาร์บ</p>
+    <main class="main-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <a href="https://script.google.com/macros/s/AKfycbwCoHNdhY802o2nR5YGAfp1cv7L13nh-LKiilli7s-DfenWp0zq74vXWqPGranu4I_-ig/exec" target="_blank" class="group">
+                <div class="service-card">
+                    <div class="accent-line bg-orange-500"></div>
+                    <div>
+                        <div class="icon-box bg-orange-50 text-orange-600">
+                            <i class="fas fa-utensils"></i>
                         </div>
-                        <div class="mt-6 flex items-center text-emerald-600 font-semibold text-sm">
-                            เข้าสู่ระบบบันทึก <i class="fas fa-chevron-right ml-2 group-hover:ml-4 transition-all"></i>
-                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">1. บันทึกการกิน</h3>
+                        <p class="text-slate-500 text-sm mt-2 leading-relaxed">บันทึกและนับคาร์โบไฮเดรตรายวัน</p>
                     </div>
-                </a>
-
-                <a href="https://script.google.com/macros/s/AKfycbzG62vCl1v3Bt--P4t_EqER4woeKPmY3PrmtuMYbdbGuWOEQGxQxTUPrv4nB1Js2sqV/exec" target="_blank" class="block group">
-                    <div class="dashboard-card border-b-blue-500">
-                        <div>
-                            <div class="icon-circle bg-blue-50 text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                                <i class="fas fa-weight"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800">ตรวจสอบภาวะสุขภาพ</h3>
-                            <p class="text-slate-500 text-sm mt-2 leading-relaxed">ดัชนีมวลกายและวัดรอบเอวรายเดือน</p>
-                        </div>
-                        <div class="mt-6 flex items-center text-blue-600 font-semibold text-sm">
-                            เริ่มการประเมิน <i class="fas fa-chevron-right ml-2 group-hover:ml-4 transition-all"></i>
-                        </div>
+                    <div class="mt-6 flex items-center text-orange-600 font-bold text-sm uppercase">
+                        เริ่มใช้งาน <i class="fas fa-arrow-right ml-2 group-hover:ml-4 transition-all"></i>
                     </div>
-                </a>
+                </div>
+            </a>
 
-                <a href="https://script.google.com/macros/s/AKfycbx-3H6dDBqWBzZweEMe8AZXSmSsCSE-23l42mWxFodHWctQyTDilgOc8kiGseBTE9Ak7Q/exec" target="_blank" class="block group">
-                    <div class="dashboard-card border-b-purple-500">
-                        <div>
-                            <div class="icon-circle bg-purple-50 text-purple-600 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800">ห้องสนทนา (Chat)</h3>
-                            <p class="text-slate-500 text-sm mt-2 leading-relaxed">ปรึกษาปัญหาสุขภาพและสอบถามข้อมูล</p>
+            <a href="https://script.google.com/macros/s/AKfycbzG62vCl1v3Bt--P4t_EqER4woeKPmY3PrmtuMYbdbGuWOEQGxQxTUPrv4nB1Js2sqV/exec" target="_blank" class="group">
+                <div class="service-card">
+                    <div class="accent-line bg-emerald-500"></div>
+                    <div>
+                        <div class="icon-box bg-emerald-50 text-emerald-600">
+                            <i class="fas fa-file-medical"></i>
                         </div>
-                        <div class="mt-6 flex items-center text-purple-600 font-semibold text-sm">
-                            เปิดห้องแชท <i class="fas fa-chevron-right ml-2 group-hover:ml-4 transition-all"></i>
-                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">2. สมุดสุขภาพ</h3>
+                        <p class="text-slate-500 text-sm mt-2 leading-relaxed">เช็คดัชนีมวลกายและรอบเอว</p>
                     </div>
-                </a>
+                    <div class="mt-6 flex items-center text-emerald-600 font-bold text-sm uppercase">
+                        ดูประวัติ <i class="fas fa-arrow-right ml-2 group-hover:ml-4 transition-all"></i>
+                    </div>
+                </div>
+            </a>
 
-            </div>
+            <a href="https://script.google.com/macros/s/AKfycby9qZM0fTRxPWVXfcspcYfrDO1hUMDr0bviaEqMT7Bvsi3zgTEOLYX1qIDdMqIut_R3/exec" target="_blank" class="group">
+                <div class="service-card">
+                    <div class="accent-line bg-blue-500"></div>
+                    <div>
+                        <div class="icon-box bg-blue-50 text-blue-600">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">3. ปรับพฤติกรรม</h3>
+                        <p class="text-slate-500 text-sm mt-2 leading-relaxed">รายการปรับเปลี่ยนพฤติกรรมสุขภาพ</p>
+                    </div>
+                    <div class="mt-6 flex items-center text-blue-600 font-bold text-sm uppercase">
+                        ดำเนินการ <i class="fas fa-arrow-right ml-2 group-hover:ml-4 transition-all"></i>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://script.google.com/macros/s/AKfycbx-3H6dDBqWBzZweEMe8AZXSmSsCSE-23l42mWxFodHWctQyTDilgOc8kiGseBTE9Ak7Q/exec" target="_blank" class="group">
+                <div class="service-card">
+                    <div class="accent-line bg-purple-500"></div>
+                    <div>
+                        <div class="icon-box bg-purple-50 text-purple-600">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">4. ห้องสนทนา</h3>
+                        <p class="text-slate-500 text-sm mt-2 leading-relaxed">สอบถามข้อมูลกับเจ้าหน้าที่</p>
+                    </div>
+                    <div class="mt-6 flex items-center text-purple-600 font-bold text-sm uppercase">
+                        เริ่มพูดคุย <i class="fas fa-arrow-right ml-2 group-hover:ml-4 transition-all"></i>
+                    </div>
+                </div>
+            </a>
         </div>
 
-        <div>
-            <h2 class="text-lg font-semibold text-slate-600 mb-6 flex items-center">
-                <span class="w-8 h-1 bg-orange-500 rounded-full mr-3"></span>
-                สำหรับเจ้าหน้าที่สาธารณสุข
-            </h2>
-            <div class="max-w-md">
-                <div onclick="openBackendModal()" class="dashboard-card backend-card relative overflow-hidden group">
-                    <div class="absolute -right-6 -bottom-6 opacity-10 text-9xl group-hover:scale-110 transition-transform">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+            <div class="lg:col-span-2">
+                <div class="instruction-box h-full">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 border-2 border-emerald-200">
+                        <i class="fas fa-info text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-lg">คำแนะนำการใช้ระบบ</h4>
+                        <p class="text-slate-500 text-sm leading-relaxed mt-1">กรุณากรอกข้อมูลตามความเป็นจริง เพื่อให้เจ้าหน้าที่สามารถนำข้อมูลไปวิเคราะห์และวางแผนการดูแลสุขภาพของท่านได้อย่างถูกต้องแม่นยำ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div onclick="openBackendModal()" class="backend-card group">
+                <div class="flex items-center justify-between h-full">
+                    <div>
+                        <h3 class="font-bold text-xl mb-1">ส่วนเจ้าหน้าที่</h3>
+                        <p class="text-indigo-100 text-sm opacity-80">Dashboard & Management</p>
+                        <div class="mt-4 inline-block bg-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full border border-white/30 group-hover:bg-white/40 transition-all">
+                            คลิกเข้ารหัส <i class="fas fa-lock ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="text-5xl text-white/20 group-hover:text-white/40 transition-colors">
                         <i class="fas fa-user-shield"></i>
                     </div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-white/20 p-4 rounded-xl">
-                                <i class="fas fa-lock text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">ระบบจัดการข้อมูล</h3>
-                                <p class="text-indigo-100 text-sm opacity-80">Dashboard ประเมินผลและรายงาน</p>
-                            </div>
-                        </div>
-                        <div class="mt-8 flex justify-end">
-                            <span class="bg-white/20 px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/30 transition-colors">
-                                เข้าสู่ระบบจัดการ <i class="fas fa-arrow-right ml-2"></i>
-                            </span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <footer class="mt-20 text-center">
-            <p class="text-slate-400 text-sm">
-                &copy; 2026 ระบบงานโรคไม่ติดต่อ รพ.สต.บ้านสหกรณ์
-            </p>
-            <p class="text-slate-400 text-xs mt-1 italic font-light">ความปลอดภัยของข้อมูลคือหัวใจหลักของเรา</p>
+        <footer class="mt-16 text-center">
+            <div class="w-16 h-1 bg-emerald-200 mx-auto mb-6 rounded-full"></div>
+            <p class="text-slate-500 text-sm font-bold uppercase tracking-widest">รพ.สต.บ้านสหกรณ์</p>
+            <p class="text-slate-400 text-xs mt-1 italic">Service Smart Tracking System 2026</p>
         </footer>
-    </div>
+    </main>
 
-    <div id="backendModal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm transition-opacity" onclick="closeBackendModal()"></div>
-
-        <div class="flex items-center justify-center min-h-screen p-4">
+    <div id="backendModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
+        <div class="fixed inset-0" onclick="closeBackendModal()"></div>
+        <div class="relative w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl overflow-hidden">
             
-            <div class="relative w-full max-w-md transform transition-all">
+            <div id="loginSection">
+                <div class="login-header p-10 text-center text-white">
+                    <div class="w-20 h-20 bg-white/20 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-xl backdrop-blur-md border border-white/30">
+                        <i class="fas fa-shield-alt text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold tracking-tight uppercase">Staff Access</h2>
+                    <p class="text-indigo-100 text-xs mt-2 opacity-80 italic">เฉพาะเจ้าหน้าที่ที่ได้รับอนุญาตเท่านั้น</p>
+                </div>
                 
-                <div id="loginSection" class="bg-white rounded-3xl shadow-2xl overflow-hidden">
-                    <div class="bg-indigo-700 p-8 text-center">
-                        <div class="mx-auto bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
-                            <i class="fas fa-shield-alt text-white text-3xl"></i>
+                <div class="p-10">
+                    <form onsubmit="validateLogin(event)" class="space-y-5">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-400 ml-1">USERNAME</label>
+                            <input type="text" id="username" class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-indigo-500 transition-all font-medium text-slate-700" required>
                         </div>
-                        <h2 class="text-xl font-bold text-white uppercase tracking-wider">เจ้าหน้าที่เข้าสู่ระบบ</h2>
-                        <p class="text-indigo-200 text-sm mt-1">Health Security System</p>
-                    </div>
-
-                    <div class="p-8">
-                        <form id="loginForm" onsubmit="validateLogin(event)" class="space-y-5">
-                            <div>
-                                <label class="block text-slate-700 text-sm font-semibold mb-2 italic">ชื่อผู้ใช้ (Username)</label>
-                                <input type="text" id="username" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" placeholder="ระบุชื่อผู้ใช้" required>
-                            </div>
-
-                            <div>
-                                <label class="block text-slate-700 text-sm font-semibold mb-2 italic">รหัสผ่าน (Password)</label>
-                                <input type="password" id="password" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" placeholder="••••••••" required>
-                            </div>
-
-                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition-transform active:scale-95">
-                                ตรวจสอบสิทธิ์เข้าใช้งาน
-                            </button>
-                            <button type="button" onclick="closeBackendModal()" class="w-full text-slate-400 text-sm font-medium hover:text-slate-600 transition-colors">ยกเลิก</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div id="menuSection" class="hidden bg-slate-50 rounded-3xl shadow-2xl overflow-hidden p-6 border-4 border-white">
-                    <div class="flex items-center justify-between mb-6 bg-white p-4 rounded-2xl shadow-sm">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center font-bold">
-                                <i class="fas fa-user-md"></i>
-                            </div>
-                            <div>
-                                <h2 class="font-bold text-slate-800 leading-none">แผงจัดการข้อมูล</h2>
-                                <span class="text-xs text-emerald-500 font-medium">เข้าสู่ระบบสำเร็จ</span>
-                            </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-slate-400 ml-1">PASSWORD</label>
+                            <input type="password" id="password" class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-indigo-500 transition-all font-medium text-slate-700" required>
                         </div>
-                        <button onclick="logoutBackend()" class="text-rose-500 hover:bg-rose-50 px-3 py-1 rounded-lg text-sm font-bold transition-colors">
-                            <i class="fas fa-power-off"></i>
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-indigo-200 transition-all active:scale-95 text-lg mt-4">
+                            ยืนยันตัวตน
                         </button>
-                    </div>
-
-                    <div class="space-y-4">
-                        <a href="https://script.google.com/macros/s/AKfycbx7zaryPVENEA-Zfjrzsh1i39yl_wiFS93pqFST_df4qw2ibA8mb9gtVfNDjRUTnTjl/exec" target="_blank" 
-                           class="flex items-center p-4 bg-white rounded-2xl hover:shadow-md border border-slate-100 group transition-all">
-                            <div class="bg-indigo-50 text-indigo-600 p-3 rounded-xl mr-4 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                                <i class="fas fa-chart-pie"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-slate-800">Dashboard ควบคุมคาร์โบไฮเดรต</h3>
-                                <p class="text-xs text-slate-400">สรุปผลการรับประทานอาหารรายบุคคล/กลุ่ม</p>
-                            </div>
-                            <i class="fas fa-chevron-right text-slate-300"></i>
-                        </a>
-
-                        <a href="https://script.google.com/macros/s/AKfycbzxrVH6EqBrV0I6ks8AhTl6jT82ncpZV2wwriyLkfZ01bbHiTKG7heitsPtBLkJa8k0gw/exec" target="_blank"
-                           class="flex items-center p-4 bg-white rounded-2xl hover:shadow-md border border-slate-100 group transition-all">
-                            <div class="bg-emerald-50 text-emerald-600 p-3 rounded-xl mr-4 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                                <i class="fas fa-heart-pulse"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-slate-800">Dashboard ประเมินภาวะสุขภาพ</h3>
-                                <p class="text-xs text-slate-400">สรุปผล BMI และสัดส่วนร่างกายรายเดือน</p>
-                            </div>
-                            <i class="fas fa-chevron-right text-slate-300"></i>
-                        </a>
-                    </div>
+                    </form>
                 </div>
+            </div>
 
+            <div id="menuSection" class="hidden p-8 bg-slate-50">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="font-bold text-slate-800 text-xl"><i class="fas fa-bars-staggered mr-2 text-indigo-600"></i>เมนูเจ้าหน้าที่</h2>
+                    <button onclick="closeBackendModal()" class="text-rose-500 font-bold p-2 hover:bg-rose-50 rounded-xl transition-all"><i class="fas fa-power-off"></i></button>
+                </div>
+                <div class="space-y-4">
+                    <a href="https://script.google.com/macros/s/AKfycbx7zaryPVENEA-Zfjrzsh1i39yl_wiFS93pqFST_df4qw2ibA8mb9gtVfNDjRUTnTjl/exec" target="_blank" class="flex items-center p-4 bg-white border-2 border-slate-100 rounded-2xl hover:border-indigo-500 transition-all group">
+                        <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mr-4 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <span class="font-bold text-slate-700">Dashboard ควบคุมคาร์โบไฮเดรต</span>
+                    </a>
+                    <a href="https://script.google.com/macros/s/AKfycbzxrVH6EqBrV0I6ks8AhTl6jT82ncpZV2wwriyLkfZ01bbHiTKG7heitsPtBLkJa8k0gw/exec" target="_blank" class="flex items-center p-4 bg-white border-2 border-slate-100 rounded-2xl hover:border-indigo-500 transition-all group">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mr-4 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <span class="font-bold text-slate-700">Dashboard ประเมินภาวะสุขภาพ</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function openBackendModal() {
-            document.getElementById('backendModal').classList.remove('hidden');
-            resetToLogin();
-        }
-
-        function closeBackendModal() {
+        function openBackendModal() { document.getElementById('backendModal').classList.remove('hidden'); }
+        function closeBackendModal() { 
             document.getElementById('backendModal').classList.add('hidden');
+            document.getElementById('menuSection').classList.add('hidden');
+            document.getElementById('loginSection').classList.remove('hidden');
         }
 
         function validateLogin(event) {
             event.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-
-            // ใช้รหัสผ่านเดิมตามที่ระบุในไฟล์ตัวอย่าง
-            if (user === 'รพ.สหกรณ์' && pass === '08469') {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'ยืนยันตัวตนสำเร็จ',
-                    text: 'ยินดีต้อนรับเข้าสู่ระบบจัดการข้อมูลสุขภาพ',
-                    timer: 1500,
-                    showConfirmButton: false,
-                    background: '#fff',
-                }).then(() => {
-                    showMenu();
-                });
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            if (u === 'รพ.สหกรณ์' && p === '08469') {
+                Swal.fire({ icon: 'success', title: 'สำเร็จ', timer: 1000, showConfirmButton: false });
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('menuSection').classList.remove('hidden');
             } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'ข้อมูลไม่ถูกต้อง',
-                    text: 'กรุณาตรวจสอบชื่อผู้ใช้และรหัสผ่านอีกครั้ง',
-                    confirmButtonColor: '#4F46E5',
-                });
+                Swal.fire({ icon: 'error', title: 'ผิดพลาด', text: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง' });
             }
-        }
-
-        function showMenu() {
-            document.getElementById('loginSection').classList.add('hidden');
-            const menuSec = document.getElementById('menuSection');
-            menuSec.classList.remove('hidden');
-        }
-
-        function logoutBackend() {
-            Swal.fire({
-                title: 'ออกจากระบบ?',
-                text: "คุณต้องการกลับไปยังหน้าหลักสำหรับประชาชนหรือไม่",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#4F46E5',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'ยืนยัน',
-                cancelButtonText: 'ยกเลิก'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    resetToLogin();
-                    closeBackendModal();
-                }
-            })
-        }
-
-        function resetToLogin() {
-            document.getElementById('loginForm').reset();
-            document.getElementById('menuSection').classList.add('hidden');
-            document.getElementById('loginSection').classList.remove('hidden');
         }
     </script>
 </body>
